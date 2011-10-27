@@ -1,5 +1,11 @@
+<h1>Show Off Your Masterpiece</h1>
+<p>
+  You take some good pictures, and you know it. Show off your favorites by
+ordering a framed print that you can hang in your living room and be the envy of
+all your guests!
+</p>
 <%= form_tag '/upload', :multipart => true do %>
-  <label for="photo">Photo to Upload</label><br />
+  <label for="photo">Upload a picture:</label><br />
   <%= file_field_tag "photo" %><br />
   <%= submit_tag "Next step >>" %><br />
 <%- end -%>
