@@ -1,16 +1,20 @@
 <h1>Show Off Your Masterpiece</h1>
 <div class="content">
-  <div class="picturebox">
-    <p>
-      You take some good pictures, and you know it. Show off your favorites by
-    ordering a framed print that you can hang in your living room and be the envy of
-    all your guests!
-    </p>
-    <%= form_tag '/upload', :multipart => true, :class => :uploader do %>
-      <label for="photo">Upload a picture:</label><br />
-      <%= file_field_tag "photo" %><br />
-      <%= submit_tag "Next step >>" %><br />
-    <%- end -%>
-    </div>
+  <p>
+    You take some good pictures, and you know it. Show off your favorites by
+  ordering a framed print that you can hang in your living room and be the envy of
+  all your guests!
+  </p>
+  <div class="frame">
+    <div class="examplepicture"></div>
   </div>
+  <div class="picturebox">
+    <%= form_tag '/upload', :multipart => true, :class => :uploader do %>
+      <div>
+        <%= file_field_tag "photo" %>
+        <%= submit_tag "Next step >>", :class => "orange button" %>
+      </div>
+    <%- end -%>
+  </div>
+
 </div>
