@@ -9,9 +9,9 @@
     <div class="examplepicture"></div>
   </div>
   <div class="picturebox">
-    <%= form_tag '/upload', :multipart => true, :class => :uploader do %>
+    <%= form_tag('/upload', :remote => true) do %>
       <div>
-        <%= file_field_tag "photo" %>
+        <%= file_field_tag :photo %>
         <%= submit_tag "Next step >>", :class => "orange button" %>
       </div>
     <%- end -%>

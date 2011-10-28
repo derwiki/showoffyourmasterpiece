@@ -8,3 +8,9 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require_tree .
+
+$('form').live('ajax:remotipartSubmit', function() {});
+
+function photoUploadedCallback(url) {
+  $('.examplepicture').css('background-image', 'url(' + url + ')');
+}

@@ -28,6 +28,8 @@ class DefaultController < ApplicationController
     end
 
     @large_thumbnail_url = json_resp['upload']['links']['large_thumbnail']
+    render :text => "photoUploadedCallback('#{@large_thumbnail_url}');"
+    return
   end
 
 end
