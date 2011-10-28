@@ -18,6 +18,9 @@ end
 
 gem 'jquery-rails'
 
+# AJAX file uploading
+gem "remotipart", "~> 1.0"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
