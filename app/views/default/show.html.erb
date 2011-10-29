@@ -1,20 +1,22 @@
 <h1>Show Off Your Masterpiece</h1>
-<div class="content">
-  <p>
-    You take some good pictures, and you know it. Show off your favorites by
-  ordering a framed print that you can hang in your living room and be the envy of
-  all your guests!
-  </p>
-  <div class="frame">
-    <div class="examplepicture"></div>
+<p>
+  You take some good pictures, and you know it. Show off your favorites by
+ordering a framed print that you can hang in your living room and be the envy of
+all your guests!
+</p>
+<div class="wrapper">
+  <div class="roundbox"></div>
+  <div class="content">
+    <div class="frame">
+      <div class="examplepicture"></div>
+    </div>
+    <div class="picturebox">
+      <%= form_tag('/upload', :remote => true) do %>
+        <div>
+          <%= file_field_tag :photo %>
+          <%= submit_tag "Next step >>", :class => "orange button" %>
+        </div>
+      <%- end -%>
+    </div>
   </div>
-  <div class="picturebox">
-    <%= form_tag('/upload', :remote => true) do %>
-      <div>
-        <%= file_field_tag :photo %>
-        <%= submit_tag "Next step >>", :class => "orange button" %>
-      </div>
-    <%- end -%>
-  </div>
-
 </div>
