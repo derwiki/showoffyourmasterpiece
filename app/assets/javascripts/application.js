@@ -13,4 +13,7 @@ $('form').live('ajax:remotipartSubmit', function() {});
 
 function photoUploadedCallback(url) {
   $('.examplepicture').css('background-image', 'url(' + url + ')');
+  $('.content .frame').hide();
+  $('.content .orderinfo').show();
+  $('.preview img').attr('src', url);
 }

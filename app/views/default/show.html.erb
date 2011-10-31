@@ -9,14 +9,16 @@ all your guests!
   <div class="content">
     <div class="frame">
       <div class="examplepicture"></div>
+      <div class="picturebox">
+        <%= render :partial => "uploadform" %>
+      </div>
     </div>
-    <div class="picturebox">
-      <%= form_tag('/upload', :remote => true) do %>
-        <div>
-          <%= file_field_tag :photo %>
-          <%= submit_tag "Next step >>", :class => "orange button" %>
-        </div>
-      <%- end -%>
+    <div class="orderinfo">
+      <%= render :partial => "orderform" %>
+      <div class="preview clearfix">
+        <%= image_tag "http://placekitten.com/400/320" -%><br/>
+        Please allow for up to 10 days shipping.
+      </div>
     </div>
   </div>
 </div>
