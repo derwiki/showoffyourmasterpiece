@@ -10,7 +10,12 @@
 //= require_tree .
 
 $('form').live('ajax:remotipartSubmit', function() {});
-
+$(function() {
+  var upload_form = $('form#upload');
+  upload_form.change(function() {
+    upload_form.submit();
+  });
+});
 function photoUploadedCallback(url) {
   $('.examplepicture').css('background-image', 'url(' + url + ')');
   $('.content .frame').hide();
