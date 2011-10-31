@@ -15,6 +15,7 @@ body {
   font: bold 16px Helvetica;
   width: 660px;
   margin: 15px auto;
+  padding-top: 20px;
   color: #333;
 }
 p {
@@ -30,13 +31,12 @@ h1 {
 .wrapper {
   position: relative;
   margin: 0 auto;
-  padding: 50px 0;
   width: 660px;
 }
 .roundbox {
   position: absolute;
   width: 660px;
-  height: 500px;
+  height: 535px;
   margin: 0 auto;
   background-color: #000;
   z-index: -20;
@@ -67,7 +67,9 @@ h1 {
   width: 500px;
   height: 375px;
   text-align: center;
-  margin: 200px auto 175px;
+}
+.picturebox div {
+  margin: 200px auto;
 }
 .examplepicture {
   position: absolute;
@@ -99,7 +101,7 @@ h1 {
   margin-bottom:0px;
 }
 .orderinfo input {
-  margin: 0 1px;
+  margin: 3px 1px;
 }
 .orderinfo input[type=submit] {
   margin: 40px;
@@ -107,16 +109,6 @@ h1 {
 }
 .orderinfo li {
   list-style-type: none;
-}
-.uploader div {
-  width: 670px;
-  margin: 15px 0;
-}
-.uploader input[type=file] {
-  float: left;
-}
-.uploader input[type=submit] {
-  float: right;
 }
 .button {
   display: inline-block;
