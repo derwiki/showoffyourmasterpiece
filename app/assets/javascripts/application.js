@@ -10,26 +10,34 @@
 //= require_tree .
 
 $('form').live('ajax:remotipartSubmit', function() {});
-$(function() {
+var App = {};
+App.init = function() {
   var upload_form = $('form#upload');
   upload_form.change(function() {
     $('#use_this_photo').attr('disabled', 'disabled');
     upload_form.submit();
   });
-  $('#use_this_photo').click(useThisPhoto);
+  $('#use_this_photo').click(App.useThisPhoto);
   $('#use_this_photo').attr('disabled', 'disabled');
-});
-function photoUploadedCallback(data) {
+}
+
+App.photoUploadedCallback = function(data) {
   $('.examplepicture').css('background-image', 'url(' + data.large_thumbnail_url + ')');
   $('.preview img').attr('src', data.large_thumbnail_url);
   $('#photo_id').val(data.photo_id);
   $('#use_this_photo').removeAttr('disabled');
 }
-function useThisPhoto() {
+
+App.useThisPhoto = function() {
   $('.content .frame').hide();
   $('.content .orderinfo').show();
 }
-function paymentCallback(data) {
+
+App.paymentCallback = function(data) {
   $('.content .orderinfo').hide();
   $('.content .payment').show();
 }
+
+$(function() {
+  App.init();
+});

@@ -49,7 +49,7 @@ class DefaultController < ApplicationController
       :large_thumbnail_url => @large_thumbnail_url,
       :photo_id            => photo.id
     }
-    render :text => "photoUploadedCallback(#{data.to_json});"
+    render :text => "App.photoUploadedCallback(#{data.to_json});"
     return
   end
 
@@ -61,7 +61,7 @@ class DefaultController < ApplicationController
       :state    => params[:state],
       :zipcode  => params[:zipcode],
       :email    => params[:email]
-    render :text => "paymentCallback(#{{
+    render :text => "App.paymentCallback(#{{
       :photo_id => photo.id, :status => true}.to_json});"
   end
 
