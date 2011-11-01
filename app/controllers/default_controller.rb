@@ -42,10 +42,27 @@ class DefaultController < ApplicationController
     #              "large_thumbnail"=>"http://i.imgur.com/BZTu4l.jpg"}}}
 
     @original_url = json_resp['upload']['links']['original']
-    Photo.create! :url => @original_url
+    photo = Photo.create! :url => @original_url
     @large_thumbnail_url = json_resp['upload']['links']['large_thumbnail']
-    render :text => "photoUploadedCallback('#{@large_thumbnail_url}');"
+
+    data = {
+      :large_thumbnail_url => @large_thumbnail_url,
+      :photo_id            => photo.id
+    }
+    render :text => "photoUploadedCallback(#{data.to_json});"
     return
+  end
+
+  def order
+    photo = Photo.find_by_id params[:photo_id]
+    photo.update_attributes! :username => params[:name],
+      :address1 => params[:address1],
+      :address2 => params[:address2],
+      :state    => params[:state],
+      :zipcode  => params[:zipcode],
+      :email    => params[:email]
+    render :text => "paymentCallback(#{{
+      :photo_id => photo.id, :status => true}.to_json});"
   end
 
 end

@@ -16,9 +16,14 @@ $(function() {
     upload_form.submit();
   });
 });
-function photoUploadedCallback(url) {
-  $('.examplepicture').css('background-image', 'url(' + url + ')');
+function photoUploadedCallback(data) {
+  $('.examplepicture').css('background-image', 'url(' + data.large_thumbnail_url + ')');
   $('.content .frame').hide();
   $('.content .orderinfo').show();
-  $('.preview img').attr('src', url);
+  $('.preview img').attr('src', data.large_thumbnail_url);
+  $('#photo_id').val(data.photo_id);
+}
+function paymentCallback(data) {
+  $('.content .orderinfo').hide();
+  $('.content .payment').show();
 }

@@ -1,4 +1,5 @@
 <%= form_tag '/order', :remote => true do %>
+  <input type="hidden" name="photo_id" value="" id="photo_id" />
   <ul>
   <%- %w(name address1 address2 city state zipcode email).each do |field| -%>
     <li>
