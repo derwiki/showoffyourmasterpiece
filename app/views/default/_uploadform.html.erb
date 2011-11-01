@@ -1,6 +1,6 @@
 <%= form_tag('/upload', :remote => true, :id => "upload") do %>
   <div>
     <%= file_field_tag :photo %>
-    <%= submit_tag "Next step >>", :class => "orange button" %>
+    <%= button_tag "Use this photo >>", :class => "orange button", :id => :use_this_photo %>
   </div>
 <%- end -%>

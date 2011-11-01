@@ -13,15 +13,21 @@ $('form').live('ajax:remotipartSubmit', function() {});
 $(function() {
   var upload_form = $('form#upload');
   upload_form.change(function() {
+    $('#use_this_photo').attr('disabled', 'disabled');
     upload_form.submit();
   });
+  $('#use_this_photo').click(useThisPhoto);
+  $('#use_this_photo').attr('disabled', 'disabled');
 });
 function photoUploadedCallback(data) {
   $('.examplepicture').css('background-image', 'url(' + data.large_thumbnail_url + ')');
-  $('.content .frame').hide();
-  $('.content .orderinfo').show();
   $('.preview img').attr('src', data.large_thumbnail_url);
   $('#photo_id').val(data.photo_id);
+  $('#use_this_photo').removeAttr('disabled');
+}
+function useThisPhoto() {
+  $('.content .frame').hide();
+  $('.content .orderinfo').show();
 }
 function paymentCallback(data) {
   $('.content .orderinfo').hide();
