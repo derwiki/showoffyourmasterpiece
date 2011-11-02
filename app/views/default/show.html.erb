@@ -1,27 +1,21 @@
-<h1>Show Off Your Masterpiece</h1>
+<h1>Put a Frame On It</h1>
 <p>
   You take some good pictures, and you know it. Show off your favorites by
 ordering a framed print that you can hang in your living room and be the envy of
 all your guests!
 </p>
-<div class="wrapper">
-  <div class="roundbox"></div>
+<div class="page-wrapper">
+  <div class="roundbox">
+  </div>
   <div class="content">
-    <div class="frame">
-      <div class="examplepicture"></div>
-      <div class="picturebox">
-        <%= render :partial => "uploadform" %>
-      </div>
+    <div class="page uploader">
+      <%= render :partial => "uploader" %>
     </div>
-    <div class="orderinfo">
+    <div class="page order">
       <%= render :partial => "orderform" %>
-      <div class="preview clearfix">
-        <%= image_tag "http://placekitten.com/400/320" -%><br/>
-        Please allow for up to 10 days shipping.
-      </div>
     </div>
-    <div class="payment">
-      TODO # Payment Processor
+    <div class="page payment">
+      <%= render :partial => "payment" %>
     </div>
   </div>
 </div>

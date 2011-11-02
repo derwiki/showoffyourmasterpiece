@@ -1,117 +1,135 @@
-// Place all the styles related to the default controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$dark_gray: #333;
+$off_white: #eee;
+$content_width: 660px;
+$frame_width: 500px;
 
+@mixin round-corners($radius) {
+ -moz-border-radius: $radius;
+ -webkit-border-radius: $radius;
+ -khtml-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin adjust-opacity($opacity) {
+ -khtml-opacity: $opacity; 
+ -moz-opacity: $opacity; 
+ -ms-filter: "alpha(opacity=$opacity * 100)";
+  filter: alpha(opacity=$opacity * 100);
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=$opacity);
+  opacity: $opacity;
+}
 body {
   background-image: url(/assets/45_5557140133_f21c0a4d27_o.jpg);
   background-repeat: no-repeat;
-  font-family: Helvetica;
-  width: 800px;
+  font: bold 16px Helvetica;
+  width: 100%;
   margin: 0 auto;
 }
-.content {
-  position: absolute;
-  position: relative;
-  font: bold 16px Helvetica;
-  width: 660px;
-  margin: 15px auto;
-  padding-top: 20px;
-  color: #333;
-}
 p {
-  margin: 35px auto 35px;
-  width: 660px;
+  margin: 35px auto;
+  width: $content_width;
   text-align: center;
 }
 h1 {
   font: bold 44px Helvetica;
   margin-bottom: 10px;
-  text-align: center
+  text-align: center;
 }
-.wrapper {
+.page-wrapper {
   position: relative;
+  width: $content_width;
   margin: 0 auto;
-  width: 660px;
 }
-.roundbox {
+$content_height: 535px;
+.page-wrapper .content {
+  width: $content_width;
+  height: $content_height;
+  margin: 15px auto;
+  padding-top: 20px;
+  color: $dark_gray;
+}
+.page-wrapper .roundbox {
   position: absolute;
-  width: 660px;
-  height: 535px;
-  margin: 0 auto;
+  width: $content_width;
+  height: $content_height;
   background-color: #000;
   z-index: -20;
 
-  /* opacity */
- -khtml-opacity:.60; 
- -moz-opacity:.60; 
- -ms-filter:”alpha(opacity=60)”;
-  filter:alpha(opacity=60);
-  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.6);
-  opacity:.6; 
-
-  /* round the corners */
- -moz-border-radius: 20px;
- -webkit-border-radius: 20px;
- -khtml-border-radius: 20px;
-  border-radius: 20px;
+  @include adjust-opacity(.6);
+  @include round-corners(20px);
 }
-.frame {
-  position: relative;
-  border: 15px ridge #333;
-  width: 500px;
+@mixin frame {
+  border: 15px ridge $dark_gray;
+  width: $frame_width;
   height: 375px;
   margin: 50px auto;
 }
-.picturebox {
-  position: absolute;
-  width: 500px;
-  height: 375px;
-  text-align: center;
+.content .uploader {
+  height: $content_height;
+  .preview {
+    @include frame;
+    background: $off_white;
+    background-repeat: no-repeat;
+    margin: 50px auto 10px;
+  }
+  form {
+    width: $frame_width;
+    margin: 0 auto;
+    button {
+      float: right;
+    }
+  }
 }
-.picturebox div {
-  margin: 200px auto;
-}
-.examplepicture {
-  position: absolute;
-  width: 500px;
-  height: 375px;
-  z-index: -20;
-  background: #eee;
-  background-repeat: no-repeat;
-}
-.orderinfo {
+.content .order {
   display: none;
-  color: #eee;
-  width: 660px;
+  color: $off_white;
+  width: $content_width;
   padding: 35px 10px;
+  form {
+    float: left;
+    width:200px;
+  }
+  .preview {
+    float: left;
+    width:400px;
+  }
+  .preview img {
+    width:400px;
+  }
+  label {
+    font-size: 12px;
+    margin-bottom:0px;
+  }
+  input {
+    margin: 3px 1px;
+  }
+  input[type=submit] {
+    margin: 40px;
+    width: 150px;
+  }
+  li {
+    list-style-type: none;
+  }
 }
-.orderinfo form {
-  float: left;
-  width:200px;
-}
-.orderinfo .preview {
-  float: left;
-  width:400px;
-}
-.orderinfo .preview img {
-  width:400px;
-}
-.orderinfo label {
-  font-size: 12px;
-  margin-bottom:0px;
-}
-.orderinfo input {
-  margin: 3px 1px;
-}
-.orderinfo input[type=submit] {
-  margin: 40px;
-  width: 150px;
-}
-.orderinfo li {
-  list-style-type: none;
-}
-.payment {
+.content .payment {
   display: none;
+
+  form {
+    @include round-corners(10px);
+    width: $frame_width;
+    height: 158px;
+    margin: 50px auto 0;
+    padding: 20px;
+    background-color: $off_white;
+    button {
+      float: right;
+    }
+  }
+}
+.spinner {
+  display: block;
+  padding-top: 100px;
+  margin: 0 auto;
+  z-index: 40px;
 }
 .button {
   display: inline-block;
