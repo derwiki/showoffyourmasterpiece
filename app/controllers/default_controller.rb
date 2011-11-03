@@ -1,15 +1,29 @@
 require 'net/http'
 require 'uri'
+require 'open-uri'
+require 'image_size'
 
 IMGUR_UPLOAD_URL = "http://api.imgur.com/2/upload.json"
 IMGUR_KEY        = "208ee486ec20c806eeabce32b7eb6b84"
+
+FRAME_ASPECT_RATIO = 1.5
+ACCEPTABLE_RATIO = [-0.1, 0.1].map {|x| FRAME_ASPECT_RATIO + x}
 
 class DefaultController < ApplicationController
   def show ; end
 
   def upload
-    encoded_photo = Base64.encode64(params[:photo].tempfile.read())
+    dimensions = File.open(params[:photo].tempfile.path, 'rb') do |fh|
+      ImageSize.new(fh).get_size
+    end
+    aspect_ratio = dimensions.max.to_f / dimensions.min.to_f
+    puts "Aspect ratio: #{aspect_ratio}"
+    unless aspect_ratio.between? *ACCEPTABLE_RATIO
+      render :text => "App.photoUploadError('E_BADRATIO');"
+      return
+    end
 
+    encoded_photo = Base64.encode64(params[:photo].tempfile.read())
     # http://www.rubyinside.com/nethttp-cheat-sheet-2940.html
     uri = URI.parse(IMGUR_UPLOAD_URL)
     http = Net::HTTP.new(uri.host, uri.port)

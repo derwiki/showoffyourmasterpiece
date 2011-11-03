@@ -28,10 +28,19 @@ App.init = function() {
 }
 
 App.photoUploadedCallback = function(data) {
+  $('.notification').hide();
   $('.uploader .preview').css('background-image', 'url(' + data.large_thumbnail_url + ')');
   $('.order    .preview img').attr('src', data.large_thumbnail_url);
   $('#photo_id').val(data.photo_id);
   $('#use_this_photo').removeAttr('disabled');
+}
+
+App.photoUploadError = function(error_type) {
+  $('#use_this_photo').attr('disabled', 'disabled');
+  $('.notification').text(
+    "The photo you uploaded has dimensions that are very different from the" +
+    " frame size. Try another photo with an aspect ratio closer to 4:3");
+  $('.notification').show();
 }
 
 App.showTab = function(tab) {
