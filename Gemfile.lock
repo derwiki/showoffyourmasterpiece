@@ -52,6 +52,7 @@ GEM
       term-ansicolor (~> 1.0.5)
     hike (1.2.1)
     i18n (0.6.0)
+    imagesize (0.1.1)
     jquery-rails (1.0.14)
       railties (~> 3.0)
       thor (~> 0.14)
@@ -126,6 +127,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.1.0)
   heroku
+  imagesize (~> 0.1.1)
   jquery-rails
   pg
   rails (= 3.1.0)
