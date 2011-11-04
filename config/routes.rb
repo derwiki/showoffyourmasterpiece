@@ -9,6 +9,7 @@ Showoffyourmasterpiece::Application.routes.draw do
   match '/' => "default#show"
   match '/upload' => "default#upload"
   match '/order' => "default#order"
+  match '/payment' => "default#payment"
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

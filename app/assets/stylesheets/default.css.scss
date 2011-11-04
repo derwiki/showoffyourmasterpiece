@@ -43,6 +43,14 @@ h1 {
   text-align: center;
   @include round-corners(5px);
 }
+#flash_notice {
+  width: $content_width;
+  background: #ff6;
+  padding: 10px;
+  margin: 0 auto;
+  text-align: center;
+  @include round-corners(5px);
+}
 .page-wrapper {
   position: relative;
   width: $content_width;

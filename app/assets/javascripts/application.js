@@ -65,6 +65,7 @@ App.stripeInit = function() {
         exp_year: $('.card-expiry-year').val()
     }, amount, App.stripeResponseHandler);
 
+   console.log("Created token");
     // prevent the form from submitting with the default action
     return false;
   });
@@ -74,8 +75,10 @@ App.stripeResponseHandler = function(status, response) {
   console.log('stripe response', response);
   if (response.error) {
     //show the errors on the form
+   console.log("response.error", response.error);
     $(".payment-errors").html(response.error.message);
   } else {
+    console.log("response.success", response);
     var form$ = $("#payment-form");
     // token contains id, last4, and card type
     var token = response['id'];

@@ -10,7 +10,9 @@ FRAME_ASPECT_RATIO = 1.5
 ACCEPTABLE_RATIO = [-0.1, 0.1].map {|x| FRAME_ASPECT_RATIO + x}
 
 class DefaultController < ApplicationController
-  def show ; end
+  def show
+
+  end
 
   def upload
     dimensions = File.open(params[:photo].tempfile.path, 'rb') do |fh|
@@ -77,6 +79,46 @@ class DefaultController < ApplicationController
       :email    => params[:email]
     render :text => "App.paymentCallback(#{{
       :photo_id => photo.id, :status => true}.to_json});"
+  end
+
+  def payment
+    # get the credit card details submitted by the form
+    token = params[:stripeToken]
+
+    # set your secret key: remember to change this to your live secret key in
+    # production
+    # see your keys here https://manage.stripe.com/account
+    Stripe.api_key = "lbVrAGi1psT4ZREpm88WhPb2cHG9ryBB"
+
+    # create a Customer
+    customer = Stripe::Customer.create(
+      :card => token,
+      :description => "payinguser@example.com"
+    )
+
+    # charge the Customer instead of the card
+    Stripe::Charge.create(
+        :amount => 1000, # in cents
+        :currency => "usd",
+        :customer => customer.id
+    )
+
+    # save the customer ID in your database so you can use it later
+    #save_stripe_customer_id(user, customer.id)
+
+    # later
+    #customer_id = get_stripe_customer_id(user)
+
+    customer_id = customer.id
+    puts "customer_id: #{customer_id}"
+
+    puts Stripe::Charge.create(
+        :amount => 1500, # $15.00 this time
+        :currency => "usd",
+        :customer => customer_id
+    )
+    flash[:notice] = "Your payment was successful. Thank you!"
+    redirect_to "/"
   end
 
 end

@@ -4,7 +4,10 @@
 ordering a framed print that you can hang in your living room and be the envy of
 all your guests!
 </p>
-<div class="notification"></div>
+<div class="notification"> </div>
+<%- flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+<%- end -%>
 <div class="page-wrapper">
   <div class="roundbox">
   </div>

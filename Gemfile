@@ -20,7 +20,12 @@ gem 'jquery-rails'
 
 # AJAX file uploading
 gem "remotipart", "~> 1.0"
+
+# Dimension validation
 gem "imagesize", "~> 0.1.1"
+
+# Payment processing
+gem 'stripe'
 
 # Use unicorn as the web server
 # gem 'unicorn'
