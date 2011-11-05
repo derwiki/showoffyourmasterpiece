@@ -14,6 +14,7 @@ var App = {};
 App.init = function() {
   var upload_form = $('form#upload');
   upload_form.change(function() {
+    $('.notification').hide();
     $('#use_this_photo').attr('disabled', 'disabled');
     upload_form.submit();
   });
