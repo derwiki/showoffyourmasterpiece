@@ -11,18 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111031001601) do
+ActiveRecord::Schema.define(:version => 20111108031535) do
 
   create_table "photos", :force => true do |t|
-    t.string   "username"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "state"
-    t.integer  "zipcode"
-    t.string   "email"
-    t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "username"
+    t.string    "address1"
+    t.string    "address2"
+    t.string    "state"
+    t.integer   "zipcode"
+    t.string    "email"
+    t.string    "url"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "stripe_customer_id"
   end
 
 end
