@@ -33,6 +33,7 @@ App.photoUploadedCallback = function(data) {
   $('.uploader .preview').css('background-image', 'url(' + data.large_thumbnail_url + ')');
   $('.order    .preview img').attr('src', data.large_thumbnail_url);
   $('#photo_id').val(data.photo_id);
+  App.photo_id = data.photo_id;
   $('#use_this_photo').removeAttr('disabled');
 }
 
@@ -85,6 +86,7 @@ App.stripeResponseHandler = function(status, response) {
     var token = response['id'];
     // insert the token into the form so it gets submitted to the server
     form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+    form$.append("<input type='hidden' name='photo_id' value='" + App.photo_id + "'/>");
     // and submit
     form$.get(0).submit();
   }

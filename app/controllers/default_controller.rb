@@ -6,8 +6,11 @@ require 'image_size'
 IMGUR_UPLOAD_URL = "http://api.imgur.com/2/upload.json"
 IMGUR_KEY        = "208ee486ec20c806eeabce32b7eb6b84"
 
+STRIPE_TEST_KEY = "lbVrAGi1psT4ZREpm88WhPb2cHG9ryBB"
+STRIPE_LIVE_KEY = "fLIjz0AEjqHcFqasegIYOnDVpzuNor5D"
 FRAME_ASPECT_RATIO = 1.5
-ACCEPTABLE_RATIO = [-0.1, 0.1].map {|x| FRAME_ASPECT_RATIO + x}
+ACCEPTABLE_RATIO = [-0.2, 0.1].map {|x| FRAME_ASPECT_RATIO + x}
+PRICE = 10000
 
 class DefaultController < ApplicationController
   def show
@@ -63,7 +66,8 @@ class DefaultController < ApplicationController
 
     data = {
       :large_thumbnail_url => @large_thumbnail_url,
-      :photo_id            => photo.id
+      :photo_id            => photo.id,
+      :aspect_ratio        => aspect_ratio
     }
     render :text => "App.photoUploadedCallback(#{data.to_json});"
     return
@@ -82,38 +86,31 @@ class DefaultController < ApplicationController
   end
 
   def payment
-    # get the credit card details submitted by the form
     token = params[:stripeToken]
+    photo = Photo.find_by_id(params[:photo_id])
 
-    # set your secret key: remember to change this to your live secret key in
-    # production
     # see your keys here https://manage.stripe.com/account
-    Stripe.api_key = "lbVrAGi1psT4ZREpm88WhPb2cHG9ryBB"
+    if Rails.env.production?
+      Stripe.api_key = STRIPE_LIVE_KEY
+    else
+      Stripe.api_key = STRIPE_TEST_KEY
+    end
 
     # create a Customer
     customer = Stripe::Customer.create(
       :card => token,
-      :description => "payinguser@example.com"
+      :description => photo.email
     )
 
-    # charge the Customer instead of the card
-    Stripe::Charge.create(
-        :amount => 1000, # in cents
-        :currency => "usd",
-        :customer => customer.id
-    )
-
-    # save the customer ID in your database so you can use it later
-    #save_stripe_customer_id(user, customer.id)
-
-    # later
-    #customer_id = get_stripe_customer_id(user)
+    photo.stripe_customer_id = customer.id
+    photo.save!
+    puts "photo.inspect: #{photo.inspect}"
 
     customer_id = customer.id
     puts "customer_id: #{customer_id}"
 
     puts Stripe::Charge.create(
-        :amount => 1500, # $15.00 this time
+        :amount => PRICE,
         :currency => "usd",
         :customer => customer_id
     )

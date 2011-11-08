@@ -6,7 +6,11 @@
   <%= javascript_include_tag "application" %>
   <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
   <script type="text/javascript">
-    Stripe.setPublishableKey('pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj');
+    <%- if Rails.env.production? -%>
+      Stripe.setPublishableKey('pk_ODjPUTzYUL3MTi36xMUFrtrwn76op');
+    <%- else -%>
+      Stripe.setPublishableKey('pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj');
+    <%- end -%>
   </script>
   <%= csrf_meta_tags %>
   <%= yield :head -%>
