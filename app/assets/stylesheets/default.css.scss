@@ -2,6 +2,7 @@ $dark_gray: #333;
 $off_white: #eee;
 $content_width: 660px;
 $frame_width: 500px;
+$frame_height: 375px;
 
 @mixin round-corners($radius) {
  -moz-border-radius: $radius;
@@ -76,18 +77,22 @@ $content_height: 535px;
 }
 @mixin frame {
   border: 15px ridge $dark_gray;
-  width: $frame_width;
-  height: 375px;
   margin: 50px auto;
+  background-repeat: no-repeat;
+  background: $off_white;
+}
+.uploader .preview {
+  @include frame;
+  width: $frame_width;
+  height: $frame_height;
+  margin: 50px auto 10px;
+}
+.order .preview {
+  @include frame;
+  margin: 0 auto;
 }
 .content .uploader {
   height: $content_height;
-  .preview {
-    @include frame;
-    background: $off_white;
-    background-repeat: no-repeat;
-    margin: 50px auto 10px;
-  }
   form {
     width: $frame_width;
     margin: 0 auto;
@@ -102,15 +107,13 @@ $content_height: 535px;
   width: $content_width;
   padding: 35px 10px;
   form {
-    float: left;
     width:200px;
+    display: inline-block;
   }
-  .preview {
-    float: left;
-    width:400px;
-  }
-  .preview img {
-    width:400px;
+  .preview-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    width: 400px;
   }
   label {
     font-size: 12px;

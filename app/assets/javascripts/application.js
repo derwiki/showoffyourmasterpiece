@@ -18,8 +18,10 @@ App.init = function() {
     $('#use_this_photo').attr('disabled', 'disabled');
     upload_form.submit();
   });
-  $('#use_this_photo').click(function() {
+  $('#use_this_photo').click(function(evt) {
+    evt.preventDefault();
     App.showTab('order');
+    $('.roundbox').css('height', '535px');
   });
   $('#use_this_photo').attr('disabled', 'disabled');
   // load specific step with URL hash
@@ -29,12 +31,35 @@ App.init = function() {
 }
 
 App.photoUploadedCallback = function(data) {
+  console.log('photoUploadedCallback');
+  console.log(data);
   $('.notification').hide();
-  $('.uploader .preview').css('background-image', 'url(' + data.large_thumbnail_url + ')');
-  $('.order    .preview img').attr('src', data.large_thumbnail_url);
+
+  if (data.height > data.width) {
+    var width = 375;
+    var height = 375 * data.height / data.width;
+  } else {
+    var width = 500;
+    var height = 500 * data.height / data.width;
+  }
+  App.height = height;
+  App.width = width;
+  $('.preview').
+    css('background-size', '100%').
+    css('background-image', 'url(' + data.large_thumbnail_url + ')');
+  $('.uploader .preview').
+    css('width', width + 'px').
+    css('height', height + 'px');
+  $('.roundbox').css('height', (height+170) + 'px');
+
+  $('.order .preview').
+    css('width', .75 * width + 'px').
+    css('height', .75 * height + 'px');
+
   $('#photo_id').val(data.photo_id);
   App.photo_id = data.photo_id;
   $('#use_this_photo').removeAttr('disabled');
+  console.log('Aspect ratio: ', data.aspect_ratio);
 }
 
 App.photoUploadError = function(error_type) {

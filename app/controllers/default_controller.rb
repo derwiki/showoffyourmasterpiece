@@ -67,7 +67,9 @@ class DefaultController < ApplicationController
     data = {
       :large_thumbnail_url => @large_thumbnail_url,
       :photo_id            => photo.id,
-      :aspect_ratio        => aspect_ratio
+      :aspect_ratio        => aspect_ratio,
+      :width               => dimensions.first,
+      :height              => dimensions.last
     }
     render :text => "App.photoUploadedCallback(#{data.to_json});"
     return
