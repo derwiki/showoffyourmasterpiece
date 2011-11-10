@@ -8,9 +8,7 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require_tree .
-$('form').live('ajax:remotipartSubmit', function() {
-  $('#use_this_photo').removeAttr('disabled');
-});
+$('form').live('ajax:remotipartSubmit', function() {});
 var App = {};
 App.busyState = false;
 App.busy = function(val) {
@@ -36,7 +34,7 @@ App.init = function() {
     App.showTab('order');
     $('.roundbox').css('height', '535px');
   });
-  $('#use_this_photo').attr('disabled', 'disabled');
+  $('#use_this_photo').attr('disabled', 'disabled').hide();
   // load specific step with URL hash
   if (document.location.hash) {
     App.showTab(document.location.hash.replace('#', ''));
@@ -74,6 +72,7 @@ App.photoUploadedCallback = function(data) {
       css('width', .75 * width + 'px').
       css('height', .75 * height + 'px');
     App.busy(false);
+    $('#use_this_photo').removeAttr('disabled').show();
   }
   largeThumbnailImage.src = data.large_thumbnail_url;
 
@@ -84,7 +83,7 @@ App.photoUploadedCallback = function(data) {
 
 App.photoUploadError = function(error_type) {
   App.busy(false);
-  $('#use_this_photo').attr('disabled', 'disabled');
+  $('#use_this_photo').attr('disabled', 'disabled').hide();
   $('.notification').text(
     "The photo you uploaded has dimensions that are very different from the" +
     " frame size. Try another photo with an aspect ratio closer to 4:3");
