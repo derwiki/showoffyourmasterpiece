@@ -42,7 +42,6 @@ App.init = function() {
 }
 
 App.photoUploadedCallback = function(data) {
-  App.busy(false);
   console.log('photoUploadedCallback');
   console.log(data);
   $('.notification').hide();
@@ -56,21 +55,28 @@ App.photoUploadedCallback = function(data) {
   }
   App.height = height;
   App.width = width;
-  $('.preview').
-    css('background-size', '100%').
-    css('background-image', 'url(' + data.large_thumbnail_url + ')');
-  $('.uploader .preview').
-    css('width', width + 'px').
-    css('height', height + 'px');
-  $('.roundbox').css('height', (height+170) + 'px');
 
-  $('.order .preview').
-    css('width', .75 * width + 'px').
-    css('height', .75 * height + 'px');
+  var largeThumbnailImage = new Image();
+
+  // delay changes until the image itself is done downloading
+  largeThumbnailImage.onload = function() {
+    $('.preview').
+      css('background-size', '100%').
+      css('background-image', 'url(' + largeThumbnailImage.src + ')');
+    $('.uploader .preview').
+      css('width', width + 'px').
+      css('height', height + 'px');
+    $('.roundbox').css('height', (height+170) + 'px');
+
+    $('.order .preview').
+      css('width', .75 * width + 'px').
+      css('height', .75 * height + 'px');
+    App.busy(false);
+  }
+  largeThumbnailImage.src = data.large_thumbnail_url;
 
   $('#photo_id').val(data.photo_id);
   App.photo_id = data.photo_id;
-  $('#use_this_photo').removeAttr('disabled');
   console.log('Aspect ratio: ', data.aspect_ratio);
 }
 
