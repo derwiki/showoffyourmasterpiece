@@ -1,0 +1,4 @@
+#!/bin/bash
+bundle exec rake assets:clean
+bundle exec rake assets:precompile
+git add public/assets
