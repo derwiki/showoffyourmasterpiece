@@ -11,6 +11,17 @@
 
 $('form').live('ajax:remotipartSubmit', function() {});
 var App = {};
+App.busyState = false;
+App.busy = function(val) {
+  if (val) {
+    App.busyState = val;
+  } else {
+    val = !App.busyState;
+    App.busyState = val;
+  }
+  $('.roundbox').css('z-index', val ? 30 : -20);
+}
+
 App.init = function() {
   var upload_form = $('form#upload');
   upload_form.change(function() {

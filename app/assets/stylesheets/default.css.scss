@@ -72,6 +72,7 @@ $content_height: 535px;
   color: $dark_gray;
 }
 .page-wrapper .roundbox {
+  background:url(/assets/spinner.gif) no-repeat center center;
   position: absolute;
   width: $content_width;
   height: $content_height;
@@ -80,6 +81,9 @@ $content_height: 535px;
 
   @include adjust-opacity(.6);
   @include round-corners(20px);
+}
+.roundbox .spinner {
+  margin: auto;
 }
 @mixin frame {
   border: 15px ridge $dark_gray;
