@@ -8,7 +8,6 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require_tree .
-
 $('form').live('ajax:remotipartSubmit', function() {});
 var App = {};
 App.busyState = false;
@@ -26,7 +25,8 @@ App.init = function() {
   var upload_form = $('form#upload');
   upload_form.change(function() {
     $('.notification').hide();
-    $('#use_this_photo').attr('disabled', 'disabled');
+    //$('#use_this_photo').attr('disabled', 'disabled');
+    App.busy(true);
     upload_form.submit();
   });
   $('#use_this_photo').click(function(evt) {
@@ -42,6 +42,7 @@ App.init = function() {
 }
 
 App.photoUploadedCallback = function(data) {
+  App.busy(false);
   console.log('photoUploadedCallback');
   console.log(data);
   $('.notification').hide();
@@ -74,6 +75,7 @@ App.photoUploadedCallback = function(data) {
 }
 
 App.photoUploadError = function(error_type) {
+  App.busy(false);
   $('#use_this_photo').attr('disabled', 'disabled');
   $('.notification').text(
     "The photo you uploaded has dimensions that are very different from the" +
