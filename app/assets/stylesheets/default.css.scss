@@ -30,6 +30,11 @@ p {
   margin: 35px auto;
   width: $content_width;
   text-align: center;
+  background: #333;
+  color: #eee;
+  padding: 10px;
+  line-height: 1.4em;
+  @include round-corners(5px);
 }
 h1 {
   font: bold 44px Helvetica;
