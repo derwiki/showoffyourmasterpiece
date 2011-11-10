@@ -1,7 +1,7 @@
 <div class="preview landscape"></div>
 <%= form_tag('/upload', :remote => true, :id => "upload") do %>
   <div>
-    <%= file_field_tag :photo %>
+    <%= file_field_tag :photo, :accept => "image/*" %>
     <%= button_tag "Use this photo >>", :class => "orange button", :id => :use_this_photo %>
   </div>
 <%- end -%>
