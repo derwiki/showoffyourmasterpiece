@@ -1,12 +1,15 @@
+c - chore
+f - feature
+t - text change
+
+
 all
 ---
-make a simple, backgrounded image for the logo (so they can't drag it)
-offer fun frames to view with, and then upsell on having them buy it in a single
-frame
-use tracking pixel to determine if imgur is up or down (or see if they have a
-healthcheck
+(c) make a simple, backgrounded image for the logo (so they can't drag it)
+(f) offer fun frames to view with, and then upsell on having them buy it in a single frame
+(f) use tracking pixel to determine if imgur is up or down (or see if they have a healthcheck
 a lot of questions are unanswered on the main page
-frequently asked questions
+(f) frequently asked questions
 jeremiah's pick coffee- copy their return policy
 SAY FREE SHIPPING somewhere
 will only ship to the united states
@@ -18,19 +21,19 @@ add google voice number and let it roll over to voice mail -- see if anyone is
 splash page
 -----------
 different font on top
-"choose a photo" button needs styling
+(c) "choose a photo" button needs styling [adam: punting on this, seems hard]
 emphasize speediness and lack of effort
-"use this photo" doesn't always work
+(C) "use this photo" doesn't always work
 
 order info
 ----------
-take text off of top after they have continues
+(C) take text off of top after they have continues
 refund policy -- not on order page
 what happens if i don't like it?
 what happens if it's broken?
 move text 
 
-Bottom Nav
+(f) Bottom Nav
 ----------
 Samples
 More Info
