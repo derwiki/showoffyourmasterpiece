@@ -76,14 +76,12 @@ $content_height: 535px;
   position: absolute;
   width: $content_width;
   height: $content_height;
+  margin: auto;
   background-color: #000;
   z-index: -20;
 
   @include adjust-opacity(.6);
   @include round-corners(20px);
-}
-.roundbox .spinner {
-  margin: auto;
 }
 @mixin frame {
   border: 15px ridge $dark_gray;
@@ -154,12 +152,6 @@ $content_height: 535px;
       float: right;
     }
   }
-}
-.spinner {
-  display: block;
-  padding-top: 100px;
-  margin: 0 auto;
-  z-index: 40px;
 }
 .button {
   display: inline-block;
