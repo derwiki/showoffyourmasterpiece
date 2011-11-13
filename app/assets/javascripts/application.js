@@ -25,7 +25,7 @@ App.init = function() {
   var upload_form = $('form#upload');
   upload_form.change(function() {
     $('.notification').hide();
-    $('.preamble').hide();
+    $('.preamble').css('visibility', 'hidden');
     App.busy(true);
     upload_form.submit();
   });
