@@ -110,6 +110,7 @@ App.paymentCallback = function(data) {
 
 App.stripeInit = function() {
   $("#payment-form").submit(function(event) {
+    App.busy(true);
     // disable the submit button to prevent repeated clicks
     $('.submit-button').attr("disabled", "disabled");
 

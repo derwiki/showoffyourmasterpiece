@@ -156,11 +156,19 @@ $content_height: 535px;
   form {
     @include round-corners(10px);
     width: $frame_width;
-    height: 158px;
+    height: 164px;
     margin: 50px auto 0;
     padding: 20px;
     background-color: $off_white;
     button {
+      float: right;
+    }
+
+    position: absolute;
+    left: 50%;
+    margin-left: -270px;
+
+    .stripe-logo {
       float: right;
     }
   }

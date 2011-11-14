@@ -116,7 +116,7 @@ class DefaultController < ApplicationController
         :currency => "usd",
         :customer => customer_id
     )
-    flash[:notice] = "Your payment was successful. Thank you!"
+    flash[:notice] = "Your order ID is #00#{photo.id}. Thank you!"
     redirect_to "/"
   end
 

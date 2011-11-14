@@ -1,4 +1,5 @@
 <form action="/payment" method="POST" id="payment-form">
+  <%= image_tag "stripe.png", :class => "stripe-logo" -%>
   <div class="form-row">
     <label>Card Number</label><br/>
     <input type="text" size="20" autocomplete="off" class="card-number"/>
@@ -13,5 +14,5 @@
     <span> / </span>
     <input type="text" size="4" class="card-expiry-year"/>
   </div>
-  <button type="submit" class="submit-button button orange">Submit Payment</button>
+  <button type="submit" class="submit-button button orange">Submit Payment >></button>
 </form>
