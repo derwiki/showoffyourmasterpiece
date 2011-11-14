@@ -1,9 +1,13 @@
 <h1>Put a Frame On It</h1>
-<p class="preamble">
-You take some good pictures, and you know it. Show off your favorites by
-ordering framed prints that you can hang in your living room and be the envy of
-all your guests!
-</p>
+<div class="preamble">
+  <p>
+  You take some good pictures and you know it.<br/><br/>
+
+  We'll print, frame, and deliver your photos so you can have a tangible copy of
+  your work. You'll get a high quality, 16 x 24 matte print in a slick one inch
+  black frame. Your art is worth spending five minutes on.
+  </p>
+</div>
 <div class="notification"> </div>
 <%- flash.each do |name, msg| -%>
   <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>

@@ -26,19 +26,25 @@ body {
   width: 100%;
   margin: 0 auto;
 }
-p {
-  margin: 35px auto;
-  width: $content_width;
+.preamble {
+  margin: 20px auto;
+  width: 580px;
+  height: 115px;
   text-align: center;
   background: #333;
   color: #eee;
-  padding: 10px;
-  line-height: 1.4em;
+  padding: 10px 40px;
+  line-height: 1.5em;
+
+  p {
+    height: 100%;
+  }
+
   @include round-corners(5px);
 }
 h1 {
   font: bold 44px Helvetica;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
   text-align: center;
 }
 .notification {
@@ -94,6 +100,12 @@ $content_height: 535px;
   width: $frame_width;
   height: $frame_height;
   margin: 50px auto 10px;
+  ol {
+    font-size: 18px;
+    li {
+      margin: 10px;
+    }
+  }
 }
 .order .preview {
   @include frame;

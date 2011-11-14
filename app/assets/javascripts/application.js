@@ -26,11 +26,16 @@ App.init = function() {
   upload_form.change(function() {
     $('.notification').hide();
     $('.preamble').css('visibility', 'hidden');
+    $('.preview').text('');
     App.busy(true);
     upload_form.submit();
   });
   $('#use_this_photo').click(function(evt) {
     evt.preventDefault();
+    $('.preamble p').text(
+        'Shipping is free to anywhere in the continental US. We\'re currently '
+      + 'not set up to ship outside of the US. Please allow up to 10 days for '
+      + 'your print to arrive');
     App.showTab('order');
     $('.roundbox').css('height', '535px');
   });
@@ -71,8 +76,12 @@ App.photoUploadedCallback = function(data) {
     $('.order .preview').
       css('width', .75 * width + 'px').
       css('height', .75 * height + 'px');
-    App.busy(false);
+    $('.preamble p').css('margin-top', '40px').text(
+      'Like what you see? Click "Use this photo" to continue, or try again by '
+      + 'uploading another photo');
+    $('.preamble').css('visibility', 'visible');
     $('#use_this_photo').removeAttr('disabled').show();
+    App.busy(false);
   }
   largeThumbnailImage.src = data.large_thumbnail_url;
 

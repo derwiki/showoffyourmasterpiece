@@ -1,7 +1,13 @@
-<div class="preview"></div>
 <%= form_tag('/upload', :remote => true, :id => "upload") do %>
   <div>
     <%= file_field_tag :photo, :accept => "image/*" %>
     <%= button_tag "Use this photo >>", :class => "orange button", :id => :use_this_photo %>
   </div>
 <%- end -%>
+<div class="preview">
+  <ol>
+    <li>Click 'Choose File' and upload your masterpiece
+    <li>Tell us where you want it shipped
+    <li>Complete your order
+  </ol>
+</div>
