@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Thanks for your order, <%= @photo.username %></h1>
+    <p>
+      Our gnomes are hard at work printing out and framing this photograph:
+    </p>
+    <img src="<%= @photo.url.gsub('.jpg', 'l.jpg') %>" />
+    <p>
+      <div><strong>Shipping Address:</strong></div>
+      <%- %w(username address1 address2 state zipcode).each do |key| -%>
+        <%= content_tag :div, @photo.send(key.to_sym) %>
+      <%- end -%>
+    </p>
+    <p>
+      Please allow up to 10 days for your order to arrive. Please direct any
+      questions to
+      <a href="mailto:info@putaframeonit.com">info@putaframeonit.com</a>.
+    </p>
+    <p>Thanks!</p>
+    <p>&#8212;The Put a Frame On It Team</p>
+  </body>
+</html>

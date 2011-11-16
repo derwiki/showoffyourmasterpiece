@@ -1,0 +1,15 @@
+Thanks for your order, <%= @photo.username %>
+
+Our gnomes are hard at work printing out and framing this photograph:
+<%= @photo.url.gsub('.jpg', 'l.jpg') %>
+
+Shipping Address:
+<%- %w(username address1 address2 state zipcode).each do |key| -%>
+  <%= @photo.send(key.to_sym) %>
+<%- end -%>
+
+Please allow up to 10 days for your order to arrive. Please direct any
+questions to info@putaframeonit.com.
+
+Thanks!
+--The Put a Frame On It Team
