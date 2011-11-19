@@ -57,4 +57,16 @@ Showoffyourmasterpiece::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Use GMail for email delivery
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  ActionMailer::Base.smtp_settings = {
+    :tls            => true,
+    :address        => 'smtp.gmail.com',
+    :port           => 587,
+    :authentication => :plain,
+    :user_name      => 'info@putaframeonit.com',
+    :password       => 'Wr&defusp8'
+  }
 end
