@@ -1,5 +1,5 @@
 class TransactionalMailer < ActionMailer::Base
-  default from: "no-reply@putaframeonit.com"
+  default from: "Put a Frame On It <info@putaframeonit.com>"
 
   def order_confirmation(photo)
     @photo = photo

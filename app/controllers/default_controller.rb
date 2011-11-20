@@ -76,7 +76,7 @@ class DefaultController < ApplicationController
   end
 
   def order
-    photo = Photo.find_by_id params[:photo_id]
+    photo = Photo.find params[:photo_id]
     photo.update_attributes! :username => params[:name],
       :address1 => params[:address1],
       :address2 => params[:address2],
@@ -89,7 +89,7 @@ class DefaultController < ApplicationController
 
   def payment
     token = params[:stripeToken]
-    photo = Photo.find_by_id(params[:photo_id])
+    photo = Photo.find params[:photo_id]
 
     # see your keys here https://manage.stripe.com/account
     if Rails.env.production?
@@ -116,6 +116,8 @@ class DefaultController < ApplicationController
         :currency => "usd",
         :customer => customer_id
     )
+
+    TransactionalMailer.order_confirmation(photo).deliver
     flash[:notice] = "Your order ID is #00#{photo.id}. Thank you!"
     redirect_to "/"
   end
