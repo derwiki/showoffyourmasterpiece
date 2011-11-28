@@ -35,7 +35,9 @@ App.init = function() {
     $('.preamble p').text(
         'Shipping is free to anywhere in the continental US. We\'re currently '
       + 'not set up to ship outside of the US. Please allow up to 10 days for '
-      + 'your print to arrive');
+      + 'your print to arrive. '
+      + 'Order on November 28th (Cyber Monday) and get 20% off your order -- '
+      + 'just $80 to hang your masterpiece on the wall!');
     App.showTab('order');
     $('.roundbox').css('height', '535px');
   });
